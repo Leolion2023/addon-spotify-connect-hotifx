@@ -29,21 +29,15 @@ RUN \
     && cargo install --force --locked bindgen-cli \
     && export PATH="$HOME/.cargo/bin:$PATH" \
     && cargo install \
+        --git https://github.com/librespot-org/librespot.git \
+        --branch dev \
         --locked \
         --no-default-features \
         --features "native-tls pulseaudio-backend with-libmdns" \
         --root /usr \
         --bin librespot \
-        --git https://github.com/librespot-org/librespot.git \
-	--branch dev \
-	--locked \
-	--no-default-features \
-	--features "native-tls pulseaudio-backend with-libmdns" \
-	--root /usr \
-	--bin librespot \
-	--verbose \
-	-- librespot \
-
+        --verbose \
+        -- librespot \
     \
     && cargo uninstall bindgen-cli \
     && apk del --no-cache --purge .build-dependencies \
